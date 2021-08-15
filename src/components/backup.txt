@@ -1,0 +1,134 @@
+import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductDetail } from "./actions/productsAction";
+const ProductScr = (props) => {
+
+  const productDetails = useSelector(state => state.productDetails)
+  const { loading, products, error } = productDetails
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getProductDetail(props.match.params.id))
+  }, [])
+
+  return (
+
+    loading ? <div>loading</div> :
+    error ? <div>{error}</div> :
+   products.map((d)=>{
+    <div><h1>{d.id}</h1></div>
+   })
+
+  // <h1>hello</h1>
+
+  )
+  // const product = data.products.find((x) => x._id === props.match.params.id);
+  // return (
+  //   loading ? <div>loading</div> :
+  //     error ? <div>{error}</div> :
+    //     productDetail.map((product) => {
+    //       <div class="details row">
+    //         <div class="mobile col-lg-4 col-12">
+    //           {/* <div class="img">
+    //             <img src={product.img} alt="*" />
+    //           </div>
+              
+    //           <div class="little_imgs">
+    //             {product.relatedImg.map((v) => {
+    //               return (
+    //                 <div class="lite_img">
+    //                   <img src={v} alt="" />
+    //                 </div>
+    //               );
+    //             })}
+    //           </div> */}
+
+
+    //         </div>
+    //         <div class="discription col-lg-8 col-12">
+    //           <div class="title">
+    //             <p>{product.name}</p>
+    //             <h5>
+    //               For more details:
+    //               <a href="javascript:;" target="_blank">
+    //                 VISIT
+    //               </a>
+    //             </h5>
+    //             <h4>QUICK DETAILS</h4>
+
+    //             <table class="quick_details">
+    //               <tr>
+    //                 <td>DISPLAY</td>
+    //                 <td>{product.desc}</td>
+    //               </tr>
+    //               <tr>
+    //                 <td>CAMERA</td>
+    //                 <td>{product.desc}</td>
+    //               </tr>
+
+    //               <tr>
+    //                 <td>BATTERY</td>
+    //                 <td>{product.desc}</td>
+    //               </tr>
+    //             </table>
+    //           </div>
+    //           <div class="take_order">
+    //             <table class="take_order">
+    //               <tr>
+    //                 <td>Color</td>
+    //                 <td>
+    //                   {/* {product.color.map((v) => {
+    //                     return (
+    //                       <>
+    //                         <input type="radio" name="color" id="" value={v} />
+    //                         <span>{v}</span>
+    //                       </>
+    //                     );
+    //                   })} */}
+    //                 </td>
+    //               </tr>
+    //               <tr>
+    //                 <td>STORAGE</td>
+    //                 <td>
+    //                   {/* {product.storage.map((v) => {
+    //                     return (
+    //                       <>
+    //                         <input type="radio" name="storage" id="" value={v} />
+    //                         <span>{v}GB</span>
+    //                       </>
+    //                     );
+    //                   })} */}
+    //                 </td>
+    //               </tr>
+
+    //               <tr>
+    //                 <td>Quantity</td>
+    //                 <td>
+    //                   <input type="number" name="quantity" id="" />
+    //                 </td>
+    //               </tr>
+    //               <tr>
+    //                 <td>
+    //                   <h3>{product.price}</h3>
+    //                 </td>
+    //               </tr>
+    //               <tr>
+    //                 <td>
+    //                   <input
+    //                     type="submit"
+    //                     value="ORDER NOW"
+    //                     class="btn btn-outline-success"
+    //                     data-toggle="modal"
+    //                     data-target="#order_now"
+    //                   />
+    //                 </td>
+    //               </tr>
+    //             </table>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     })
+  // );
+};
+
+export default ProductScr;
