@@ -6,14 +6,14 @@ const addToCart = (productId, orderQty) => async (dispatch, getState) => {
     dispatch({
         type: CART_ADD_ITEM,
         payLoad: {
-            id: data.map(x=>x.id),
-            name: data.map(x=>x.name),
-            img: data.map(x=>x.img),
-            stock: data.map(x=>x.stock),
+            id: data[0].id,
+            name: data[0].name,
+            img: data[0].img,
+            price: data[0].price,
+            stock: data[0].stock,
             orderQty
         }
     })
-    console.log("data is "+data.map(x=>x.id))
 }
 
-export {addToCart}
+export { addToCart }
