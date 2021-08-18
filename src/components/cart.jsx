@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addToCart } from "./actions/cartAction"
+import { addToCart, removeFromCart } from "./actions/cartAction"
 
 const Cart = (props) => {
     const qty = props.location.search ? props.location.search.split('=')[1] : 1
@@ -8,7 +8,14 @@ const Cart = (props) => {
 
     const getCartItems = useSelector(state => state.getCartItems)
     const { cartItems } = getCartItems
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const checkOutHandler = () =>{
+        console.log("check Out")
+    }
+
+    const deleteFromCart = (productId) =>{
+        dispatch(removeFromCart(productId))
+    }
     useEffect(() => {
         dispatch(addToCart(item_id, qty))
     }, [dispatch, item_id, qty])
@@ -44,6 +51,7 @@ const Cart = (props) => {
                                                             <div className="col-md-3">
                                                                 <div className="totalPrice">
                                                                     <p>{item.price * item.orderQty}</p>
+                                                                    <button onClick={()=>deleteFromCart(item.id)}>Delete</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -55,8 +63,9 @@ const Cart = (props) => {
                                 </div>
                                 <div className="col-4">
                                     <div className="subTotal">
-                                        <p>Total Item : {cartItems.reduce((a,c) => a + c.qty,0)}</p>
-                                        <p>Total price : {cartItems.reduce((a,c) => a + c.qty*c.price,0)}</p>
+                                        <p>Total Item : {cartItems.reduce((a, c) => a + Number(c.orderQty), 0)}</p>
+                                        <p>Total price : {cartItems.reduce((a, c) => a + Number(c.orderQty) * Number(c.price), 0)}</p>
+                                        <button onClick={checkOutHandler} className="btn btn-success" disabled={cartItems.length === 0 ? "disabled" : ""}>Proceed to checkout</button>
                                     </div>
                                 </div>
                             </div>

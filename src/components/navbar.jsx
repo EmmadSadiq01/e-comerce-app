@@ -14,6 +14,10 @@ const navMenu = [
   {
     title:"Shop",
     path:"shop"
+  },
+  {
+    title:"Login",
+    path:"login"
   }
 ]
   return (

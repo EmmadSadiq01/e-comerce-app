@@ -7,6 +7,7 @@ import Navbar from './components/navbar';
 import Shop from './components/shop';
 // import AddProduct from './components/admin/addItem';
 import ProductScr from './components/productScreen';
+import LoginScreen from './components/loginScreen';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/products/:id" component={ProductScr} />
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
+        <Route path="/login" component={LoginScreen} />
         <Route path="/shop" component={Shop} />
         <Route path="/cart:id?" component={Cart} />
         {/* <Route path="/addProduct" component={AddProduct} /> */}
